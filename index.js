@@ -19,10 +19,13 @@ app.get('/', (req, res) => {
     res.send("Welcome to the test app for Carselonadaily.")
 });
 
-//query parameter:-
+//query parameter: time :- assuming [12:00/3:15]
 app.get('/solution-1', (req, res) => {
-    let degreeAngle = firstSolution(3, 15);
-    res.send(`Solution to the first problem is :- ${degreeAngle} `);
+    let timeQuery = req.query.time;
+    let timeTaken = timeQuery.split(":");
+    const [hours, minutes] = timeTaken;
+    let degreeAngle = firstSolution(hours, minutes);
+    res.send(`Solution to the first problem is :- ${degreeAngle} degrees`);
 });
 
 //query parameter:- val/comma separated distance speed[distance1,speed1,distance2,speed2,distance3,speed3]
